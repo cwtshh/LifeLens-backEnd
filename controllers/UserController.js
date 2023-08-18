@@ -79,10 +79,18 @@ const login = async(req, res) => {
             token: generateToken(user._id),
         }
     );
+};
+
+// recebe o usuario logado
+const getCurrentUser = async(req, res) => {
+    const user = req.user;
+
+    res.status(422).json(user);
 }
 
 module.exports = {
     register,
     login,
+    getCurrentUser,
 };
 
