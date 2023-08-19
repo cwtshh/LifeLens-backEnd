@@ -1,4 +1,4 @@
-const user = require('../models/User');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -16,7 +16,7 @@ const authGuard = async(req, res, next) => {
     try {
         const verified = jwt.verify(token, jwtSecret);
 
-        req.user = await user.findById(verified.id).select('-password');
+        req.user = await User.findById(verified.id).select('-password');
 
         next();
 
